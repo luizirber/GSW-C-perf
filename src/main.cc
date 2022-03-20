@@ -99,6 +99,13 @@ static void BM_sigma4(benchmark::State& state) {
 }
 BENCHMARK(BM_sigma4);
 
+static void BM_cabbeling(benchmark::State& state) {
+  for (auto _  : state) {
+    gsw_cabbeling(10.0, 10.0, 10.0);
+  }
+}
+BENCHMARK(BM_cabbeling);
+
 static void BM_sound_speed(benchmark::State& state) {
   for (auto _  : state) {
     gsw_sound_speed(10.0, 10.0, 10.0);
@@ -128,6 +135,14 @@ static void BM_specvol_first_derivatives(benchmark::State& state) {
 }
 BENCHMARK(BM_specvol_first_derivatives);
 
+static void BM_specvol_first_derivatives_wrt_enthalpy(benchmark::State& state) {
+  for (auto _  : state) {
+    double a, b;
+    gsw_specvol_first_derivatives_wrt_enthalpy(10.0, 10.0, 10.0, &a, &b);
+  }
+}
+BENCHMARK(BM_specvol_first_derivatives_wrt_enthalpy);
+
 static void BM_specvol_second_derivatives(benchmark::State& state) {
   for (auto _  : state) {
     double a, b, c, d, e;
@@ -135,6 +150,14 @@ static void BM_specvol_second_derivatives(benchmark::State& state) {
   }
 }
 BENCHMARK(BM_specvol_second_derivatives);
+
+static void BM_specvol_second_derivatives_wrt_enthalpy(benchmark::State& state) {
+  for (auto _  : state) {
+    double a, b, c, d, e;
+    gsw_specvol_second_derivatives(10.0, 10.0, 10.0, &a, &b, &c, &d, &e);
+  }
+}
+BENCHMARK(BM_specvol_second_derivatives_wrt_enthalpy);
 
 static void BM_alpha_on_beta(benchmark::State& state) {
   for (auto _  : state) {
@@ -151,6 +174,14 @@ static void BM_rho_first_derivatives(benchmark::State& state) {
 }
 BENCHMARK(BM_rho_first_derivatives);
 
+static void BM_rho_second_derivatives(benchmark::State& state) {
+  for (auto _  : state) {
+    double a, b, c, d, e;
+    gsw_rho_second_derivatives(10.0, 10.0, 10.0, &a, &b, &c, &d, &e);
+  }
+}
+BENCHMARK(BM_rho_second_derivatives);
+
 static void BM_thermobaric(benchmark::State& state) {
   for (auto _  : state) {
     gsw_thermobaric(10.0, 10.0, 10.0);
@@ -164,6 +195,22 @@ static void BM_enthalpy(benchmark::State& state) {
   }
 }
 BENCHMARK(BM_enthalpy);
+
+static void BM_enthalpy_first_derivatives(benchmark::State& state) {
+  for (auto _  : state) {
+    double a, b;
+    gsw_enthalpy_first_derivatives(10.0, 10.0, 10.0, &a, &b);
+  }
+}
+BENCHMARK(BM_enthalpy_first_derivatives);
+
+static void BM_enthalpy_second_derivatives(benchmark::State& state) {
+  for (auto _  : state) {
+    double a, b, c;
+    gsw_enthalpy_second_derivatives(10.0, 10.0, 10.0, &a, &b, &c);
+  }
+}
+BENCHMARK(BM_enthalpy_second_derivatives);
 
 static void BM_enthalpy_diff(benchmark::State& state) {
   for (auto _  : state) {
@@ -185,6 +232,23 @@ static void BM_internal_energy(benchmark::State& state) {
   }
 }
 BENCHMARK(BM_internal_energy);
+
+/* TODO: not in the C API yet
+
+static void BM_internal_energy_first_derivatives(benchmark::State& state) {
+  for (auto _  : state) {
+    gsw_internal_energy_first_derivatives(10.0, 10.0, 10.0);
+  }
+}
+BENCHMARK(BM_internal_energy_first_derivatives);
+
+static void BM_internal_energy_second_derivatives(benchmark::State& state) {
+  for (auto _  : state) {
+    gsw_internal_energy_second_derivatives(10.0, 10.0, 10.0);
+  }
+}
+BENCHMARK(BM_internal_energy_second_derivatives);
+*/
 
 static void BM_ct_maxdensity(benchmark::State& state) {
   for (auto _  : state) {
